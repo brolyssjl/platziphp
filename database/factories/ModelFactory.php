@@ -25,6 +25,7 @@ $factory->define(PlatziPHP\User::class, function (Faker\Generator $faker) {
 
 $factory->define(PlatziPHP\Post::class, function (Faker\Generator $faker) {
     return [
-        'title' => $faker->title,
+        'title' => $faker->sentence(),
+        'body' => $faker->paragraph()
     ];
 });
