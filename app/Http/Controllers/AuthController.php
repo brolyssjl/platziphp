@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 class AuthController extends Controller
 {
   public function index(){
-    return view('auth');
+    return view('auth.login');
   }
 
   public function store(Request $request){
@@ -19,7 +19,13 @@ class AuthController extends Controller
     if(!Auth::attempt($request->only(['email', 'password']))){
       return redirect()->route('auth_show_path')->withErrors('No encontramos al usuario');
     } else {
-      return 'Listo';
+      return redirect('/');
     }
+  }
+
+  public function destroy(){
+    Auth::logout();
+
+    return redirect()->route('auth_show_path');
   }
 }

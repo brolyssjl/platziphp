@@ -1,17 +1,21 @@
-@extends('layouts.main')
+@extends('layouts.app')
 
 @section('content')
-  <h1>Estos son nuestros Posts</h1>
-  <ul class="list-unstyled">
-    @foreach($posts as $post)
-      <li>
-        <p class="lead">
-          <a href="{{ route('post_show_path', $post->id) }}">{{ $post->title }}</a>
-        </p>
-        <br>
-        Hecho por {{ $post->user->name }}
-      </li>
-      <hr>
-    @endforeach
-  </ul>
-@stop
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">Listado de Posts</div>
+
+                <div class="panel-body">
+                    <ul>
+                      @foreach($posts as $post)
+                        <li>{{ $post->title }}</li>
+                      @endforeach
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection

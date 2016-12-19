@@ -177,6 +177,7 @@ return [
         // PlatziPHP\Providers\BroadcastServiceProvider::class,
         PlatziPHP\Providers\EventServiceProvider::class,
         PlatziPHP\Providers\RouteServiceProvider::class,
+        PlatziPHP\Providers\ComposerServiceProvider::class,
 
     ],
 
