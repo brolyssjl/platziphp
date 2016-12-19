@@ -6,15 +6,9 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">Login</div>
-                @if($errors->any())
-                  <div class="alert alert-danger">
-                    <ul class="list-unstyled">
-                      @foreach($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                      @endforeach
-                    </ul>
-                  </div>
-                @endif
+
+                @include('partials.errors')
+                
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/auth/login') }}">
                         {{ csrf_field() }}

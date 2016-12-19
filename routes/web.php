@@ -12,10 +12,18 @@
 */
 Route::group(['middleware' => 'auth'], function(){
   Route::get('/', 'HomeController@index');
-  Route::get('/posts/{id}', [
+  Route::get('posts/create', [
+    'uses' => 'PostController@create',
+    'as' => 'post_create_path'
+  ]);
+  Route::post('posts/create', [
+    'uses' => 'PostController@store',
+    'as' => 'post_create_path'
+  ]);
+  Route::get('posts/{id}', [
     'uses' => 'PostController@show',
     'as' => 'post_show_path'
-  ]);
+  ])->where('id', '[0-9]+');
 });
 
 Route::get('auth', [
