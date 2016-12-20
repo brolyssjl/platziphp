@@ -35,9 +35,30 @@ class PostController extends Controller
     $post = new Post;
     $post->title = $request->get('title');
     $post->body = $request->get('body');
-    $post->user_id = Auth::id();
+    $post->user_id = Auth ::id();
     $post->save();
 
     return redirect()->route('post_show_path', $post->id);
+  }
+
+  public function edit($id){
+    $post = Post::findOrFail($id);
+
+    return view('posts.edit', ['post' => $post]);
+  }
+
+  public function update(Request $request, $id){
+    $post = Post::findOrFail($id);
+
+    $post->title = $request->get('title');
+    $post->body = $request->get('body');
+    $post->user_id = Auth ::id();
+    $post->save();
+
+    return redirect()->route('post_show_path', $post->id);
+  }
+
+  public function destroy($id){
+
   }
 }

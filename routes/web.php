@@ -12,18 +12,36 @@
 */
 Route::group(['middleware' => 'auth'], function(){
   Route::get('/', 'HomeController@index');
+
   Route::get('posts/create', [
     'uses' => 'PostController@create',
     'as' => 'post_create_path'
   ]);
+
   Route::post('posts/create', [
     'uses' => 'PostController@store',
     'as' => 'post_create_path'
   ]);
+
+  Route::get('posts/{id}/edit', [
+    'uses' => 'PostController@edit',
+    'as' => 'post_edit_path'
+  ])->where('id', '[0-9]+');
+
+  Route::put('posts/{id}/edit', [
+    'uses' => 'PostController@update',
+    'as' => 'post_put_path'
+  ])->where('id', '[0-9]+');
+
+  Route::delete('posts/{id}/delete', [
+    'uses' => 'PostController@destroy',
+    'as' => 'post_delete_path'
+  ])->where('id', '[0-9]+');
+
   Route::get('posts/{id}', [
     'uses' => 'PostController@show',
     'as' => 'post_show_path'
-  ])->where('id', '[0-9]+');
+    ])->where('id', '[0-9]+');
 });
 
 Route::get('auth', [
