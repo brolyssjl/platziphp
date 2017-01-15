@@ -58,3 +58,7 @@ Route::get('auth/logout', [
 ]);
 
 Auth::routes();
+
+/* CRUD with AJAX using VueJS */
+Route::get('manage-vue', 'VueItemController@manageVue');
+Route::resource('vueitems','VueItemController');
