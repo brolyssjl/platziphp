@@ -19,6 +19,7 @@ $factory->define(PlatziPHP\User::class, function (Faker\Generator $faker) {
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
         'password' => $password ?: $password = bcrypt('secret'),
+        'type' => $faker->randomElement(array('admin', 'user')),
         'remember_token' => str_random(10),
     ];
 });

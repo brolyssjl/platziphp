@@ -10,18 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::group(['middleware' => 'auth'], function(){
   Route::get('/', 'HomeController@index');
-
-  Route::get('posts/create', [
-    'uses' => 'PostController@create',
-    'as' => 'post_create_path'
-  ]);
-
-  Route::post('posts/create', [
-    'uses' => 'PostController@store',
-    'as' => 'post_create_path'
-  ]);
 
   Route::get('posts/{id}/edit', [
     'uses' => 'PostController@edit',
@@ -42,6 +33,18 @@ Route::group(['middleware' => 'auth'], function(){
     'uses' => 'PostController@show',
     'as' => 'post_show_path'
     ])->where('id', '[0-9]+');
+});
+
+Route::group(['middleware' => 'auth', 'middleware' => 'is_admin'], function(){
+  Route::get('posts/create', [
+    'uses' => 'PostController@create',
+    'as' => 'post_create_path'
+  ]);
+
+  Route::post('posts/create', [
+    'uses' => 'PostController@store',
+    'as' => 'post_create_path'
+  ]);
 });
 
 Route::get('auth', [
